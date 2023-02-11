@@ -1,16 +1,30 @@
 footer {
   background: var(--secondary-background-color);
   display: flex;
+  justify-content: space-between;
   gap: 1em;
+  font-size: large;
 }
 
 .links,
 .social-media-icons {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
 }
 
 .social-media-icons {
   text-align: center;
+  gap: 0.25em;
+}
+
+.social-button{
+    background:none;
+    color: var(--primary-color);
+}
+
+.links {
+  font-family: var(--title-font-family);
+  display: inline-flexbox;
+  text-align: right;
   gap: 0.25em;
 }
