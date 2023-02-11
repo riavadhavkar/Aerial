@@ -6,12 +6,34 @@ header {
   gap: 1em;
 }
 
-.text-logo {
-  font-family: var(--title-font-family);
+.title-and-bookstore-logo {
+text-align: left;
 }
 
 .search-bar {
+  text-align: center;
   padding: 0.5em;
+}
+
+.search-box {
+  text-align: center;
+  padding: 0.5em;
+  background-color: var(--primary-color);
+}
+
+.header-login-and-cart{
+text-align: right;
+font-weight: bold;
+}
+
+header > section {
+  flex-basis: 100%;
+}
+
+.text-logo {
+  font-family: var(--title-font-family);
+  font-size: 64px;
+  font-weight: bold;
 }
 
 @media (max-width: 600px) {
