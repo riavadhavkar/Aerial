@@ -76,9 +76,9 @@ font-weight: bold;
   border-radius: 10px;
 }
 
-header > section {
-  /* flex-basis: 100%; */
-}
+/* header > section {
+  flex-basis: 100%;
+} */
 
 /* .header-dropdown {
   width: min-content;
