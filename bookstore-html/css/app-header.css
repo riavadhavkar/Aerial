@@ -70,10 +70,15 @@ font-weight: bold;
 
 .shopping-cart {
   border-radius: 10px;
+  border: none;
+  outline:none;
 }
 
 .profile {
-  border-radius: 10px;
+  border-radius: 50px;
+  width:fit-content;
+  border: none;
+  outline:none;
 }
 
 /* header > section {
