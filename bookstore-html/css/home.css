@@ -1,24 +1,102 @@
 .home-page {
   display: flex;
+  background-image: url("../images/site/background.png");
+  /* opacity: 0.5;; */
+  /* background-image: ; */
+  flex-direction:column;
+  /* justify-items: center; */
+  align-items:center;
+  /* gap: 20px; */
 }
 
-.welcome-text {
-  width: 20em;
+/* .home-page > * {
+  margin: 10px;
+} */
+
+.category-buttons {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  justify-content: center;
+  background-color: var(--neutral-color);
+  padding: 0.5em;
+  /* border-top-style: solid;
+  border-color: black; */
+
 }
 
-.category-image-items {
+.category-nav {
+  width:100%;
+}
+
+.button.selected-category-button {
+  background-color: var(--primary-color);
+  font-family: var(--title-font-family);
+  color: var(--neutral-color);
+  font-weight: bold;
+  text-transform: uppercase;
+  
+}
+
+.button.unselected-category-button,
+.button.unselected-category-button:visited {
+  font-family: var(--title-font-family);
+  font-weight: bold;
+  background-color: var(--neutral-color);
+  color: var(--primary-color);
+  /* border-right: solid 0.5px var(--primary-color); */
+}
+
+.button.unselected-category-button:hover,
+.button.unselected-category-button:active {
+  background-color: var(--primary-color);
+  color: var(--neutral-color);
+}
+
+.shop-comics-button {
+  display:flex;
+  width:100%;
+  justify-content:center;
+}
+
+.shop-comics {
+  width:fit-content;
+  border:none;
+  outline:none;
+  background-color: var(--neutral-color);
+  color: var(--primary-color);
+  font-weight: bolder;
+  font-family: var(--title-font-family);
+  font-size: 40px;
+  border-radius: 50px;
+  padding: 0.3em 0.6em 0.3em 0.6em;
+}
+
+.popular-image-items {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   gap: 1em;
+  justify-content: center;
 }
 
-.category-image-items a {
+.popular-images {
+  width:100%;
+}
+
+.popular-image img {
+  border-radius:10px;
+  /* width: 20%; */
+}
+
+.popular-image-items a {
   text-align: center;
   cursor: pointer;
+  width: 18%;
 }
 
-.category-image-items div {
+.popular-image-items div {
+  /* width:100%; */
   padding: 0.5em 0;
   background: rgba(0, 0, 0, 0.5); /* last # is percent opacity */
   color: white;

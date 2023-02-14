@@ -3,7 +3,7 @@
 }
 
 .categories-button {
-  background-color: var(--primary-color-dark);
+  background-color: var(--primary-color);
   margin-top: 0.25em;
 }
 
@@ -29,6 +29,7 @@
 .header-dropdown:hover ul {
   display: block;
   position: absolute;
+  right: 0;
   min-width: 8em;
   z-index: 1;
   cursor: pointer;

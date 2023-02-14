@@ -4,15 +4,90 @@ header {
   justify-content: space-between;
   padding: 1em;
   gap: 1em;
+  align-items: center;
 }
 
-.text-logo {
+/* HEADER - TITLE */
+.title-and-bookstore-logo {
+text-align: left;
+
+/* display: inline-flexbox; */
+}
+
+.logo {
+  display: inline;
+}
+
+.fa-magnifying-glass {
+  color: var(--neutral-color);
+  padding: 1em;
+  padding-right: 0em;
+}
+
+.title {
   font-family: var(--title-font-family);
+  font-size: 64px;
+  font-weight: bold;
+  display: inline;
 }
 
 .search-bar {
+  text-align: center;
   padding: 0.5em;
+  display:flex;
+  flex-grow: 1;
+  justify-content: center;
+
 }
+
+.search-bar form {
+  width: 80%;
+  display: flex;
+  border-radius: 30px;
+  background-color: var(--primary-color);
+}
+
+.search-box {
+  text-align: left;
+  background-color: transparent;
+  /* color: white; */
+  padding: 0.8em;
+  border:none;
+  flex-grow: 1;
+  outline:none;
+}
+
+.search-box::placeholder {
+  color: white;
+  opacity: 90%;
+  font-weight: bold;
+}
+
+.header-login-and-cart{
+text-align: right;
+font-weight: bold;
+}
+
+.shopping-cart {
+  border-radius: 10px;
+  border: none;
+  outline:none;
+}
+
+.profile {
+  border-radius: 50px;
+  width:fit-content;
+  border: none;
+  outline:none;
+}
+
+/* header > section {
+  flex-basis: 100%;
+} */
+
+/* .header-dropdown {
+  width: min-content;
+} */
 
 @media (max-width: 600px) {
   header {
