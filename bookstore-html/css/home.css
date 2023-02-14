@@ -1,24 +1,21 @@
 .home-page {
   display: flex;
+  background-image: url("../images/site/background.png");
 }
 
-.welcome-text {
-  width: 20em;
-}
-
-.category-image-items {
+.popular-image-items {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   gap: 1em;
 }
 
-.category-image-items a {
+.popular-image-items a {
   text-align: center;
   cursor: pointer;
 }
 
-.category-image-items div {
+.popular-image-items div {
   padding: 0.5em 0;
   background: rgba(0, 0, 0, 0.5); /* last # is percent opacity */
   color: white;

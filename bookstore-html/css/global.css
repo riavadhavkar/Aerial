@@ -1,7 +1,7 @@
 /* GOOGLE FONTS */
 
 @import url("https://fonts.googleapis.com/css?family=Palanquin+Dark");
-@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Inter");
 
 /* CUSTOM PROPERTIES */
 
@@ -11,8 +11,8 @@
   custom properties are always defined in :root (not in html).
 */
 :root {
-  --title-font-family: "Palanquin Dark", serif;
-  --default-font-family: "Inter", sans-serif;
+  --title-font-family: "Palanquin Dark";
+  --default-font-family: "Inter";
   /* 
     16px is the default font size set by browswers in the html tag.
     This should never be changed so that vision-impared users can override it.
@@ -20,14 +20,13 @@
     If you want a differnt default size for your site, change it in the body tag.
     For example, if you want 20px, then set the size to 20/16 = 1.25rem.
   */
-  --defatul-font-size: 1.25rem;
-  --default-text-color: #111;
-  --neutral-color: #4e4e4e;
-
-  --primary-color: dodgerblue;
-  --primary-color-dark: darkblue;
-  --primary-background-color: whitesmoke;
-  --secondary-background-color: burlywood;
+  --default-font-size: 1.25rem;
+  --default-text-color: white;
+  --neutral-color: white;
+  --primary-color: #192E4B;
+  --primary-color-dark: #192E4B;
+  --primary-background-color: white;
+  --secondary-background-color: white;
   --card-background-color: navajowhite;
 }
 
@@ -72,7 +71,7 @@ ul {
 /*
   By default, a width refers to the width of the content box.
   This causes unexpected behavior in many situations. The following
-  rull makes width refer to the width of the border box.
+  rule makes width refer to the width of the border box.
   See the box model (content/padding/border/margin) for details.
 */
 * {
