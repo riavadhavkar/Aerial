@@ -1,37 +1,57 @@
 <script setup lang="ts">
-import TheHomeCategoryList from "@/components/TheHomeCategoryList.vue";
+import TheHomePopularList from '@/components/TheHomePopularList.vue'
 </script>
 
 <style scoped>
 .home-page {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: url('/site-images/background.png');
 }
 
-.welcome-text {
-  width: 20em;
+.shop-comics-button {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.button.shop-comics {
+  background-color: var(--neutral-color);
+  color: var(--primary-color);
+
+  font-family: var(--title-font-family);
+  font-weight: bolder;
+  font-size: 40px;
+
+  width: fit-content;
+  border: none;
+  border-color: var(--primary-color);
+  border-style: solid;
+  outline: none;
+  border-radius: 50px;
+  padding: 0.1em 1em 0.1em 1em;
+}
+
+.button.shop-comics:hover,
+.button.shop-comics:active {
+  background: var(--primary-color);
+  color: var(--neutral-color);
+  border-color: var(--neutral-color);
+  border-style: solid;
 }
 </style>
+
 <template>
   <div class="home-page">
-    <section class="welcome-text flow-content container dark-background">
-      <h2>Welcome to Another Bookstore</h2>
-      <p>
-        Another Bookstore is a client-side application written using Vue
-        components.
-      </p>
-      <p>
-        It includes a home page and a category page. Both pages have the same
-        header and footer.
-      </p>
-      <p>
-        You can navigate to the category page by choosing any category from the
-        dropdown menu in the header. You can navigate to the home page by
-        clicking on the logo in the header.
-      </p>
-      <p>Take some time and explore the code.</p>
+    <section class="shop-comics-button container">
+      <router-link to="/category/popular">
+        <button class="button shop-comics">SHOP FOR COMICS</button>
+      </router-link>
     </section>
-    <section class="category-images container">
-      <the-home-category-list></the-home-category-list>
+
+    <section class="popular-images container">
+      <the-home-popular-list></the-home-popular-list>
     </section>
   </div>
 </template>

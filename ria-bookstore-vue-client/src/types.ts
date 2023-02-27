@@ -11,3 +11,9 @@ export interface CategoryItem {
   categoryId: number;
   name: string;
 }
+
+export interface PopularItem {
+  itemId: number;
+  title: string;
+  isVisible: boolean;
+}

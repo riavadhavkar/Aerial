@@ -8,10 +8,14 @@ const bookList = sourceData.books as BookItem[];
 provide("bookList", bookList);
 </script>
 
-<style scoped></style>
+<style scoped>
+.category-page {
+  background: url('/site-images/background.png');
+}
+</style>
 
 <template>
-  <div>
+  <div class="category-page">
     <the-category-nav></the-category-nav>
     <the-category-book-list :bookList="bookList"> </the-category-book-list>
   </div>
