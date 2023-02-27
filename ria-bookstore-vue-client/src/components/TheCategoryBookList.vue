@@ -9,8 +9,8 @@ const props = defineProps<{
 
 <style scoped>
 ul {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   padding: 1em;
   gap: 1em;
 }

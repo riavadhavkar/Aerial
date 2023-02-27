@@ -2,64 +2,140 @@
   "categories": [
     {
       "categoryId": 1001,
-      "name": "Classics"
+      "name": "Popular"
     },
     {
       "categoryId": 1002,
-      "name": "Fantasy"
+      "name": "New Releases"
     },
     {
       "categoryId": 1003,
-      "name": "Mystery"
+      "name": "Fantasy"
     },
     {
       "categoryId": 1004,
-      "name": "Romance"
+      "name": "Comedy"
     },
     {
       "categoryId": 1005,
-      "name": "Science Fiction"
+      "name": "Drama"
+    },
+    {
+      "categoryId": 1006,
+      "name": "Action"
+    },
+    {
+      "categoryId": 1007,
+      "name": "Slice of Life"
+    },
+    {
+      "categoryId": 1008,
+      "name": "Romance"
+    },
+    {
+      "categoryId": 1009,
+      "name": "Thriller"
+    },
+    {
+      "categoryId": 1010,
+      "name": "Supernatural"
     }
   ],
   "books": [
     {
       "bookId": 1001,
-      "title": "The Iliad",
-      "author": "Homer",
+      "title": "Adeline's Darkest Night",
+      "author": "Hyeonsung Lee",
       "price": 699,
-      "isPublic": true,
+      "isPublic": false,
       "categoryId": 1001
     },
     {
       "bookId": 1002,
-      "title": "The Brothers Karamazov",
-      "author": "Fyodor Dostoyevski",
-      "price": 799,
+      "title": "Reunion",
+      "author": "2coin",
+      "price": 1399,
       "isPublic": true,
       "categoryId": 1001
     },
     {
       "bookId": 1003,
-      "title": "Little Dorrit",
-      "author": "Charles Dickens",
-      "price": 599,
-      "isPublic": true,
+      "title": "The Stand In",
+      "author": "Neoul Shim",
+      "price": 799,
+      "isPublic": false,
       "categoryId": 1001
     },
     {
       "bookId": 1004,
-      "title": "Moby Dick",
-      "author": "Herman Melville",
-      "price": 699,
+      "title": "Quiet Days",
+      "author": "Sehee Kim",
+      "price": 1299,
       "isPublic": true,
       "categoryId": 1001
     },
     {
       "bookId": 1005,
-      "title": "Hamlet",
-      "author": "William Shakespeare",
-      "price": 899,
-      "isPublic": true,
+      "title": "The Night Market",
+      "author": "Kotaro Tsunekawa",
+      "price": 599,
+      "isPublic": false,
+      "categoryId": 1001
+    },
+    {
+      "bookId": 1006,
+      "title": "Something About Us",
+      "author": "Yunji Lee",
+      "price": 999,
+      "isPublic": false,
+      "categoryId": 1001
+    },
+    {
+      "bookId": 1007,
+      "title": "The Stairway of Time",
+      "author": "JooYoung Ha",
+      "price": 1199,
+      "isPublic": false,
+      "categoryId": 1001
+    },
+    {
+      "bookId": 1008,
+      "title": "Let's Kill Your Husband",
+      "author": "Hideo Okuda",
+      "price": 599,
+      "isPublic": false,
+      "categoryId": 1001
+    }
+  ],
+  "popularItems": [
+    {
+      "itemId": 1001,
+      "title": "Adeline's Darkest Night",
+      "isVisible": true,
+      "categoryId": 1001
+    },
+    {
+      "itemId": 1002,
+      "title": "Hanyang Diaries",
+      "isVisible": true,
+      "categoryId": 1001
+    },
+    {
+      "itemId": 1003,
+      "title": "Reunion",
+      "isVisible": true,
+      "categoryId": 1001
+    },
+    {
+      "itemId": 1004,
+      "title": "Semantic Error",
+      "isVisible": true,
+      "categoryId": 1001
+    },
+    {
+      "itemId": 1005,
+      "title": "The Golden Forest",
+      "isVisible": true,
       "categoryId": 1001
     }
   ]
