@@ -37,7 +37,11 @@ const categoryLinkName = function (category: CategoryItem): string {
   border-style: solid;
 }
 
-.header-dropdown li {
+li > a {
+  display: block;
+}
+
+.header-dropdown li a {
   padding: 0.5em 1em;
 }
 

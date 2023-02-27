@@ -7,7 +7,9 @@ import TheHomePopularList from '@/components/TheHomePopularList.vue'
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: url('/site-images/background.png');
+  background-image: url('/site-images/background.png');
+  background-position: center;
+  background-size: cover;
 }
 
 .shop-comics-button {
