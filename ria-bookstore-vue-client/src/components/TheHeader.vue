@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import TheHeaderDropdown from '@/components/TheHeaderDropdown.vue'
-import TheHeaderSearchBar from '@/components/TheHeaderSearchBar.vue'
 </script>
 
 <style scoped>
