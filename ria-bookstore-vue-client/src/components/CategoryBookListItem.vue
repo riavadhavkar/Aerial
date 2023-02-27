@@ -10,7 +10,11 @@ const bookImageFileName = function (book: BookItem): string {
   name = name.replace(/'/g, '')
   return `${name}.jpg`
 }
+function bookImageUrl(imageFileName: string) {
+  return new URL(`../assets/book-images/${imageFileName}`, import.meta.url).href
+}
 </script>
+
 <style scoped>
 .book-box {
   display: flex;
@@ -113,7 +117,7 @@ const bookImageFileName = function (book: BookItem): string {
     <div v-bind:class="{ 'book-image': !book.isPublic, 'book-image-read': book.isPublic }">
       <img
         v-bind:class="{ 'read-overlay': book.isPublic }"
-        :src="'/book-images/' + bookImageFileName(props.book)"
+        :src="bookImageUrl(bookImageFileName(props.book))"
         :alt="book.title"
       />
       <button v-if="book.isPublic" class="read-button">

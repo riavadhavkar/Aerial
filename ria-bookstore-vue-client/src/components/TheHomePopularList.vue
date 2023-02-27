@@ -8,6 +8,9 @@ const popularImageFileName = function (popularItem: PopularItem): string {
   name = name.replace(/'/g, '')
   return `${name}.jpg`
 }
+function popularImageUrl(imageFileName: string) {
+  return new URL(`../assets/popular-images/${imageFileName}`, import.meta.url).href
+}
 </script>
 
 <style scoped>
@@ -44,7 +47,7 @@ img {
       <router-link :to="'../category/popular'">
         <img
           class="popular-image"
-          :src="'popular-images/' + popularImageFileName(popularItem)"
+          :src="popularImageUrl(popularImageFileName(popularItem))"
           :alt="popularItem.title"
         />
         <!-- <div>{{ category.name }}</div> -->
