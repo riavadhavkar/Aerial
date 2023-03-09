@@ -22,23 +22,19 @@
     },
     {
       "categoryId": 1006,
-      "name": "Action"
-    },
-    {
-      "categoryId": 1007,
       "name": "Slice of Life"
     },
     {
-      "categoryId": 1008,
+      "categoryId": 1007,
       "name": "Romance"
     },
     {
-      "categoryId": 1009,
+      "categoryId": 1008,
       "name": "Thriller"
     },
     {
-      "categoryId": 1010,
-      "name": "Supernatural"
+      "categoryId": 1009,
+      "name": "Mystery"
     }
   ],
   "books": [
