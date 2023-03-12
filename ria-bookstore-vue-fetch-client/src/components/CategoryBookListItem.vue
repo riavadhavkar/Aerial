@@ -8,6 +8,9 @@ const bookImageFileName = function (book: BookItem): string {
   let name = book.title.toLowerCase()
   name = name.replace(/ /g, '-')
   name = name.replace(/'/g, '')
+  name = name.replace(/,/g, '')
+  name = name.replace(/\?/g, '')
+  name = name.replace(/!/g, '')
   return `${name}.jpg`
 }
 function bookImageUrl(imageFileName: string) {
@@ -38,8 +41,10 @@ function bookImageUrl(imageFileName: string) {
 }
 
 .book-image img {
-  border-radius: 4px;
   width: 100%;
+  border-style: solid;
+  border-radius: 4px;
+  border-width: 4px;
 }
 
 .button.add-to-cart {
@@ -58,12 +63,24 @@ function bookImageUrl(imageFileName: string) {
   border-style: solid;
 }
 
-/* .read-now {
-  position: relative;
-} */
-
 .book-image-read {
   position: relative;
+  border-style: solid;
+  border-radius: 4px;
+  border-width: 4px;
+}
+
+.read-eye-indicator {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: var(--primary-color);
+  color: var(--neutral-color);
+  border-radius: 50px;
+  font-size: 1.5em;
+  padding: 0.5em;
+  z-index: 1;
+  transform: translate(0.62em,-0.62em);
 }
 
 .read-overlay {
@@ -115,6 +132,9 @@ function bookImageUrl(imageFileName: string) {
 <template>
   <li class="book-box">
     <div v-bind:class="{ 'book-image': !book.isPublic, 'book-image-read': book.isPublic }">
+      <div v-if="book.isPublic" class="read-eye-indicator">
+        <i class="fa-solid fa-eye"></i>
+      </div>
       <img
         v-bind:class="{ 'read-overlay': book.isPublic }"
         :src="bookImageUrl(bookImageFileName(props.book))"
@@ -125,8 +145,6 @@ function bookImageUrl(imageFileName: string) {
           <div class="read-now-text">Read Now</div>
         </router-link>
       </button>
-
-      <!-- </router-link> -->
     </div>
     <div class="book-title">{{ book.title }}</div>
     <div class="book-author">{{ book.author }}</div>

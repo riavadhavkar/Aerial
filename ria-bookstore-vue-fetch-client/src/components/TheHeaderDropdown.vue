@@ -1,13 +1,14 @@
 <script setup lang="ts">
-import { inject } from 'vue'
 import type { CategoryItem } from '@/types'
-const categoryList = inject('categoryList') as CategoryItem[]
-const categoryLinkName = function (category: CategoryItem): string {
-  let name = category.name.toLowerCase()
-  name = name.replace(/ /g, '-')
-  name = name.replace(/'/g, '')
-  return `${name}`
-}
+
+const apiUrl =
+`${location.protocol}//${location.hostname}:`+
+`${location.port === "5173" ? "8080" : location.port}` +
+`${import.meta.env.BASE_URL}/api`;
+
+let response = await fetch(`${apiUrl}/categories/`)
+let data = await response.json()
+let categoryList = data as CategoryItem[]
 </script>
 
 <style scoped>
@@ -71,7 +72,7 @@ li > a {
     </button>
     <ul>
       <li v-for="category in categoryList" :key="category.categoryId">
-        <router-link :to="'/category/' + categoryLinkName(category)">
+        <router-link :to="'/category/' + category.name">
           {{ category.name }}
         </router-link>
       </li>

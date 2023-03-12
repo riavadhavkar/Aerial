@@ -41,6 +41,7 @@ import TheHomePopularList from '@/components/TheHomePopularList.vue'
   color: var(--neutral-color);
   border-color: var(--neutral-color);
   border-style: solid;
+  transition: 0.5s ease;
 }
 </style>
 
