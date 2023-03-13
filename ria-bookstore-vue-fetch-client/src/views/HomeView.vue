@@ -48,13 +48,11 @@ import TheHomePopularList from '@/components/TheHomePopularList.vue'
 <template>
   <div class="home-page">
     <section class="shop-comics-button container">
-      <router-link to="/category/popular">
+      <router-link to="/category/Popular">
         <button class="button shop-comics">SHOP FOR COMICS</button>
       </router-link>
     </section>
 
-    <section class="popular-images container">
-      <the-home-popular-list></the-home-popular-list>
-    </section>
+    <the-home-popular-list></the-home-popular-list>
   </div>
 </template>
