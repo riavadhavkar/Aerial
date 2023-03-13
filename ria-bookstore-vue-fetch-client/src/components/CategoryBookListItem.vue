@@ -76,7 +76,7 @@ function bookImageUrl(imageFileName: string) {
   right: 0;
   background-color: var(--primary-color);
   color: var(--neutral-color);
-  border-radius: 50px;
+  border-radius: 50%;
   font-size: 1.5em;
   padding: 0.5em;
   z-index: 1;
