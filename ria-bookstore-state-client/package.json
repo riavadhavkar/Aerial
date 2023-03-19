@@ -1,5 +1,5 @@
 {
-  "name": "ria-bookstore-fetch-client",
+  "name": "ria-bookstore-state-client",
   "version": "0.0.0",
   "private": true,
   "scripts": {
