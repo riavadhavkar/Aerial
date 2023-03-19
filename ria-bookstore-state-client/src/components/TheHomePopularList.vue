@@ -1,11 +1,6 @@
 <script setup lang="ts">
 import type { PopularItem } from '@/types'
-// import {ref} from 'vue'
-
-const apiUrl =
-`${location.protocol}//${location.hostname}:`+
-`${location.port === "5173" ? "8080" : location.port}` +
-`${import.meta.env.BASE_URL}/api`;
+import { apiUrl } from "@/api"
 
 let response = await fetch(`${apiUrl}/is-featured`)
 let data = await response.json()
