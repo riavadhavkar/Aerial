@@ -3,15 +3,11 @@ import { RouterView, useRoute } from 'vue-router'
 import TheHeader from '@/components/TheHeader.vue'
 import TheFooter from '@/components/TheFooter.vue'
 import { useCategoryStore } from '@/stores/category'
-import { usePopularStore } from '@/stores/popular'
 
 const route = useRoute()
 
 const categoryStore = useCategoryStore()
 categoryStore.fetchCategories()
-
-const popularStore = usePopularStore()
-popularStore.fetchPopular()
 </script>
 
 <template>

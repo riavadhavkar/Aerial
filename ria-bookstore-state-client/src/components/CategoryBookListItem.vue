@@ -79,7 +79,7 @@ function bookImageUrl(imageFileName: string) {
   border-radius: 50%;
   font-size: 1.5em;
   padding: 0.5em;
-  z-index: 1;
+  z-index: 0;
   transform: translate(0.62em, -0.62em);
 }
 

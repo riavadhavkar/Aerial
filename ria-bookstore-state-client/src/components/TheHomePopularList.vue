@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import type { PopularItem } from '@/types'
 import { usePopularStore } from '@/stores/popular'
+
 const popularStore = usePopularStore()
+popularStore.fetchPopular()
 
 const popularImageFileName = function (popularItem: PopularItem): string {
   let name = popularItem.title.toLowerCase()
@@ -15,29 +17,6 @@ const popularImageFileName = function (popularItem: PopularItem): string {
 
 function popularImageUrl(imageFileName: string) {
   return new URL(`../assets/popular-images/${imageFileName}`, import.meta.url).href
-}
-
-const numberOfCarouselItems = popularStore.popularList.length / 5
-let start = 0
-let end = numberOfCarouselItems
-const popularDisplay = popularStore.popularList.slice(start, end)
-
-function carouselArrows(direction: boolean) {
-  if (direction == true && end < popularStore.popularList.length) {
-    // count.value++;
-    start += numberOfCarouselItems
-    end += numberOfCarouselItems
-    popularStore.popularList.slice(start, end)
-    // console.log(popularDisplay)
-    // return popularDisplay
-  } else if (direction == false && start > 0) {
-    // count.value--;
-    start -= numberOfCarouselItems
-    end -= numberOfCarouselItems
-    popularStore.popularList.slice(start, end)
-    // console.log(popularDisplay)
-    // return popularDisplay
-  }
 }
 </script>
 
@@ -95,9 +74,9 @@ li div {
 
 <template>
   <ul class="popular-images container">
-    <i class="fa-solid fa-circle-chevron-left fa-2xl" @click="carouselArrows(false)"></i>
+    <i class="fa-solid fa-circle-chevron-left fa-2xl" @click="popularStore.backward()"></i>
 
-    <li v-for="popularItem in popularDisplay" :key="popularItem.bookId">
+    <li v-for="popularItem in popularStore.getCarouselItems" :key="popularItem.bookId">
       <router-link :to="`../category/Popular`">
         <img
           class="popular-image"
@@ -107,6 +86,6 @@ li div {
       </router-link>
     </li>
 
-    <i class="fa-solid fa-circle-chevron-right fa-2xl" @click="carouselArrows(true)"></i>
+    <i class="fa-solid fa-circle-chevron-right fa-2xl" @click="popularStore.forward()"></i>
   </ul>
 </template>
