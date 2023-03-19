@@ -1,10 +1,7 @@
 <script setup lang="ts">
 import type { PopularItem } from '@/types'
-import { apiUrl } from "@/api"
-
-let response = await fetch(`${apiUrl}/is-featured`)
-let data = await response.json()
-let popularList = data as PopularItem[]
+import { usePopularStore } from '@/stores/popular'
+const popularStore = usePopularStore()
 
 const popularImageFileName = function (popularItem: PopularItem): string {
   let name = popularItem.title.toLowerCase()
@@ -20,31 +17,28 @@ function popularImageUrl(imageFileName: string) {
   return new URL(`../assets/popular-images/${imageFileName}`, import.meta.url).href
 }
 
-// const count = ref(0)
-const numberOfCarouselItems = popularList.length / 6;
-let start = 0;
-let end = numberOfCarouselItems;
-let popularDisplay = popularList.slice(start, end);
+const numberOfCarouselItems = popularStore.popularList.length / 5
+let start = 0
+let end = numberOfCarouselItems
+const popularDisplay = popularStore.popularList.slice(start, end)
 
 function carouselArrows(direction: boolean) {
-  if (direction == true && end < popularList.length) {
+  if (direction == true && end < popularStore.popularList.length) {
     // count.value++;
-    start += numberOfCarouselItems;
-    end += numberOfCarouselItems;
-    popularDisplay = popularList.slice(start, end);
-    console.log(popularDisplay);
-    return popularDisplay;
-  }
-  else if (direction == false && start > 0) {
+    start += numberOfCarouselItems
+    end += numberOfCarouselItems
+    popularStore.popularList.slice(start, end)
+    // console.log(popularDisplay)
+    // return popularDisplay
+  } else if (direction == false && start > 0) {
     // count.value--;
-    start -= numberOfCarouselItems;
-    end -= numberOfCarouselItems;
-    popularDisplay = popularList.slice(start, end);
-    console.log(popularDisplay);
-    return popularDisplay;
+    start -= numberOfCarouselItems
+    end -= numberOfCarouselItems
+    popularStore.popularList.slice(start, end)
+    // console.log(popularDisplay)
+    // return popularDisplay
   }
 }
-
 </script>
 
 <style scoped>
@@ -101,18 +95,18 @@ li div {
 
 <template>
   <ul class="popular-images container">
-      <i class="fa-solid fa-circle-chevron-left fa-2xl" @click="carouselArrows(false)"></i>
+    <i class="fa-solid fa-circle-chevron-left fa-2xl" @click="carouselArrows(false)"></i>
 
     <li v-for="popularItem in popularDisplay" :key="popularItem.bookId">
       <router-link :to="`../category/Popular`">
-      <img
-        class="popular-image"
-        :src="popularImageUrl(popularImageFileName(popularItem))"
-        :alt="popularItem.title"
-      />
+        <img
+          class="popular-image"
+          :src="popularImageUrl(popularImageFileName(popularItem))"
+          :alt="popularItem.title"
+        />
       </router-link>
     </li>
 
-      <i class="fa-solid fa-circle-chevron-right fa-2xl" @click="carouselArrows(true)"></i>
+    <i class="fa-solid fa-circle-chevron-right fa-2xl" @click="carouselArrows(true)"></i>
   </ul>
 </template>

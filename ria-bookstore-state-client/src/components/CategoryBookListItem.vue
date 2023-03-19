@@ -80,7 +80,7 @@ function bookImageUrl(imageFileName: string) {
   font-size: 1.5em;
   padding: 0.5em;
   z-index: 1;
-  transform: translate(0.62em,-0.62em);
+  transform: translate(0.62em, -0.62em);
 }
 
 .read-overlay {
