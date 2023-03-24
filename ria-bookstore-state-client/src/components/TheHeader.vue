@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import TheHeaderDropdown from '@/components/TheHeaderDropdown.vue'
+import { useCartStore } from '@/stores/cart'
+const cartStore = useCartStore()
 </script>
 
 <style scoped>
@@ -121,7 +123,7 @@ header {
     <section class="login-and-cart">
       <button class="button shopping-cart">
         <i class="fa-solid fa-bag-shopping"></i>
-        0
+        {{ cartStore.count }}
       </button>
 
       <button class="button profile">

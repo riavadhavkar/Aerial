@@ -1,9 +1,13 @@
 <script setup lang="ts">
 import { defineProps } from 'vue'
 import type { BookItem } from '@/types'
+import { useCartStore } from '@/stores/cart'
+const cartStore = useCartStore()
+
 const props = defineProps<{
   book: BookItem
 }>()
+
 const bookImageFileName = function (book: BookItem): string {
   let name = book.title.toLowerCase()
   name = name.replace(/ /g, '-')
@@ -156,6 +160,8 @@ function bookImageUrl(imageFileName: string) {
         }}
       </sup>
     </div>
-    <button class="button add-to-cart"><i class="fa-solid fa-plus"></i>&nbsp;Add to Cart</button>
+    <button class="button add-to-cart" @click="cartStore.addToCart(book)">
+      <i class="fa-solid fa-plus"></i>&nbsp;Add to Cart
+    </button>
   </li>
 </template>
