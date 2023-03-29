@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { BookItem } from '@/types'
 import { useCartStore } from '@/stores/cart'
-import { asDollarsAndCents } from '@/price';
+import { asDollarsAndCents } from '@/price'
 const cartStore = useCartStore()
 
 const bookImageFileName = function (book: BookItem): string {
@@ -94,16 +94,6 @@ img {
   border-width: 2px;
 }
 
-.square {
-  width: 100px;
-  height: 100px;
-}
-
-.wide-rect {
-  width: 125px;
-  height: 100px;
-}
-
 .cart-book-title {
   display: flex;
   align-items: center;
@@ -166,57 +156,6 @@ img {
   background-color: transparent;
   font-size: 1.5rem;
 }
-
-.inc-button {
-  /* font-size: 1.125rem; */
-  /* color: var(--primary-color); */
-  margin-right: 0.25em;
-}
-
-.inc-button:hover {
-  /* color: var(--primary-color-dark); */
-}
-
-.dec-button {
-  /* font-size: 1.125rem; */
-  /* color: var(--neutral-color);
-  -webkit-text-stroke-width: 2px;
-  -webkit-text-stroke-color: var(--primary-color); */
-}
-
-.dec-button:hover {
-  /* color: #aaa; */
-}
-
-/* Chevron buttons
-
-.dec-arrow-button,
-.inc-arrow-button {
-  font-size: 1rem;
-  color: var(--primary-color);
-}
-
-.dec-arrow-button:hover,
-.inc-arrow-button:hover {
-  color: var(--primary-color-dark);
-} */
-
-input[type='number'] {
-  width: 4em;
-}
-
-select {
-  background-color: var(--primary-color);
-  color: white;
-  border: 2px solid var(--primary-color-dark);
-  border-radius: 3px;
-}
-/* .cart-book-image {
-  height: 50px;
-  width: 50px;
-  border: solid black 3px;
-  background-color: darkmagenta;
-} */
 </style>
 
 <template>
