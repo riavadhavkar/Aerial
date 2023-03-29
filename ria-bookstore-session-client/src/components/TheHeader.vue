@@ -121,15 +121,20 @@ header {
 
     <!-- HEADER - BUTTONS -->
     <section class="login-and-cart">
-      <button class="button shopping-cart">
-        <i class="fa-solid fa-bag-shopping"></i>
-        {{ cartStore.count }}
-      </button>
-
-      <button class="button profile">
-        <i class="fa-solid fa-user"></i>
-        LOGIN
-      </button>
+      <div class="cart">
+        <router-link :to="{ name: 'cart-view' }">
+          <button class="button shopping-cart">
+            <i class="fa-solid fa-bag-shopping"></i>
+            {{ cartStore.count }}
+          </button>
+        </router-link>
+      </div>
+      <div class="login">
+        <button class="button profile">
+          <i class="fa-solid fa-user"></i>
+          LOGIN
+        </button>
+      </div>
     </section>
   </header>
 </template>

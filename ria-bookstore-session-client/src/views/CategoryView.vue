@@ -4,6 +4,9 @@ import TheCategoryBookList from '@/components/TheCategoryBookList.vue'
 import { useRoute } from 'vue-router'
 import { useBookStore } from '@/stores/book'
 import { watch } from 'vue'
+import { useCategoryStore } from '@/stores/category'
+const categoryStore = useCategoryStore()
+categoryStore.getRecentCategory(useRoute().params.name as string)
 
 const route = useRoute()
 const bookStore = useBookStore()

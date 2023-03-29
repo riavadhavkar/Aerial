@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import TheHomePopularList from '@/components/TheHomePopularList.vue'
+import { useCategoryStore } from '@/stores/category'
+const categoryStore = useCategoryStore()
+categoryStore.getRecentCategory("")
 </script>
 
 <style scoped>

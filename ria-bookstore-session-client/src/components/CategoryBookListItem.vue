@@ -2,6 +2,7 @@
 import { defineProps } from 'vue'
 import type { BookItem } from '@/types'
 import { useCartStore } from '@/stores/cart'
+import { asDollarsAndCents } from '@/price'
 const cartStore = useCartStore()
 
 const props = defineProps<{
