@@ -5,7 +5,7 @@ import { apiUrl } from '@/api'
 export const useCategoryStore = defineStore('category', {
   state: () => ({
     categoryList: [] as CategoryItem[],
-    recentCategory: "" as string,
+    currentCategory: "Popular" as string,
   }),
   actions: {
     async fetchCategories() {
@@ -14,12 +14,7 @@ export const useCategoryStore = defineStore('category', {
       this.categoryList = data as CategoryItem[]
     },
     getRecentCategory(recentCategory: string) {
-      if (recentCategory === "") {
-        this.recentCategory = this.categoryList[0].name
-      }
-      else {
-        this.recentCategory = recentCategory
-      }
+        this.currentCategory = recentCategory
     },
   }
 })
