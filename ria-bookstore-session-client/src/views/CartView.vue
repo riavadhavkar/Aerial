@@ -149,7 +149,7 @@ h2 {
         </button>
       </div>
       <div class="continue-shopping">
-        <router-link :to="'/category/' + categoryStore.recentCategory">
+        <router-link :to="'/category/' + categoryStore.currentCategory">
           <button class="button recent-category">
             <i class="fa-solid fa-basket-shopping"></i>
             Continue Shopping
@@ -183,7 +183,7 @@ h2 {
     </h2>
     <section class="cart-page-buttons">
       <div class="return-to-shopping">
-        <router-link :to="'/category/' + categoryStore.recentCategory">
+        <router-link :to="'/category/' + categoryStore.currentCategory">
           <button class="button back-to-shopping">
             <i class="fa-solid fa-basket-shopping"></i>
             Return to Shopping
