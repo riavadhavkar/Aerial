@@ -52,6 +52,10 @@ function bookImageUrl(imageFileName: string) {
   border-width: 4px;
 }
 
+.add-to-cart-button {
+  flex-grow: 1;
+}
+
 .button.add-to-cart {
   outline: none;
   font-weight: bold;
@@ -84,7 +88,7 @@ function bookImageUrl(imageFileName: string) {
   border-radius: 50%;
   font-size: 1.5em;
   padding: 0.5em;
-  z-index: 0;
+  z-index: 1;
   transform: translate(0.62em, -0.62em);
 }
 
@@ -159,6 +163,7 @@ function bookImageUrl(imageFileName: string) {
         {{ book.price - Math.floor(book.price / 100) * 100 }}
       </sup>
     </div>
+    <div class="add-to-cart-button"></div>
     <button class="button add-to-cart" @click="cartStore.addToCart(book)">
       <i class="fa-solid fa-plus"></i>&nbsp;Add to Cart
     </button>
