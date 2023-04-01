@@ -159,10 +159,10 @@ h2 {
     </section>
     <cart-table></cart-table>
     <h2 v-if="cartStore.count != 1">
-      Subtotal ({{ cartStore.count }} items) = {{ asDollarsAndCents(cartStore.computeSubtotal) }}
+      Subtotal ({{ cartStore.count }} items) = {{ asDollarsAndCents(cartStore.computeSubtotal, false) }}
     </h2>
     <h2 v-else>
-      Subtotal ({{ cartStore.count }} item) = {{ asDollarsAndCents(cartStore.computeSubtotal) }}
+      Subtotal ({{ cartStore.count }} item) = {{ asDollarsAndCents(cartStore.computeSubtotal, false) }}
     </h2>
     <section class="cart-page-buttons">
       <div class="proceed-to-checkout">

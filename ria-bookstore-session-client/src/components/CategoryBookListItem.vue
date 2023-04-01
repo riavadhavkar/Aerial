@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { defineProps } from 'vue'
 import type { BookItem } from '@/types'
+import { asDollarsAndCents } from '@/price'
 import { useCartStore } from '@/stores/cart'
 const cartStore = useCartStore()
 
@@ -153,11 +154,9 @@ function bookImageUrl(imageFileName: string) {
     <div class="book-title">{{ book.title }}</div>
     <div class="book-author">{{ book.author }}</div>
     <div class="book-price">
-      ${{ Math.trunc(book.price / 100)
+      {{ asDollarsAndCents(book.price, true)
       }}<sup>
-        {{
-          Math.trunc((Math.abs(book.price / 100) - Math.floor(Math.abs(book.price / 100))) * 100)
-        }}
+        {{ book.price - Math.floor(book.price / 100) * 100 }}
       </sup>
     </div>
     <button class="button add-to-cart" @click="cartStore.addToCart(book)">

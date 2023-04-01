@@ -175,7 +175,7 @@ img {
             <img :src="bookImageUrl(bookImageFileName(item.book))" :alt="item.book.title" />
           </div>
           <div class="cart-book-title">{{ item.book.title }}</div>
-          <div class="cart-book-price">{{ asDollarsAndCents(item.book.price) }}</div>
+          <div class="cart-book-price">{{ asDollarsAndCents(item.book.price, false) }}</div>
           <div class="cart-book-quantity">
             <button
               class="icon-button dec-button"
@@ -192,7 +192,7 @@ img {
             </button>
           </div>
           <div class="cart-book-subtotal">
-            {{ asDollarsAndCents(item.book.price * item.quantity) }}
+            {{ asDollarsAndCents(item.book.price * item.quantity, false) }}
           </div>
           <div class="cart-book-remove">
             <button class="icon-button remove-button" @click="updateCart(item.book, 0)">
