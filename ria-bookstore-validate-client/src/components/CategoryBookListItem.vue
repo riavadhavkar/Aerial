@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { defineProps } from 'vue'
 import type { BookItem } from '@/types'
 import { asDollarsAndCents } from '@/price'
 import { useCartStore } from '@/stores/cart'

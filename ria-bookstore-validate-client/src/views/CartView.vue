@@ -122,6 +122,7 @@ h2 {
   border-radius: 8px;
   font-weight: bolder;
   font-size: x-large;
+  margin: 0.5em auto;
 }
 
 .back-to-shopping:hover {
@@ -159,10 +160,12 @@ h2 {
     </section>
     <cart-table></cart-table>
     <h2 v-if="cartStore.count != 1">
-      Subtotal ({{ cartStore.count }} items) = {{ asDollarsAndCents(cartStore.computeSubtotal, false) }}
+      Subtotal ({{ cartStore.count }} items) =
+      {{ asDollarsAndCents(cartStore.computeSubtotal, false) }}
     </h2>
     <h2 v-else>
-      Subtotal ({{ cartStore.count }} item) = {{ asDollarsAndCents(cartStore.computeSubtotal, false) }}
+      Subtotal ({{ cartStore.count }} item) =
+      {{ asDollarsAndCents(cartStore.computeSubtotal, false) }}
     </h2>
     <section class="cart-page-buttons">
       <div class="proceed-to-checkout">
@@ -181,15 +184,13 @@ h2 {
       Your cart is empty. <br />
       Please add some comics to your cart before proceeding to checkout.
     </h2>
-    <section class="cart-page-buttons">
-      <div class="return-to-shopping">
-        <router-link :to="'/category/' + categoryStore.currentCategory">
-          <button class="button back-to-shopping">
-            <i class="fa-solid fa-basket-shopping"></i>
-            Return to Shopping
-          </button>
-        </router-link>
-      </div>
-    </section>
+    <div class="return-to-shopping">
+      <router-link :to="'/category/' + categoryStore.currentCategory">
+        <button class="button back-to-shopping">
+          <i class="fa-solid fa-basket-shopping"></i>
+          Return to Shopping
+        </button>
+      </router-link>
+    </div>
   </div>
 </template>

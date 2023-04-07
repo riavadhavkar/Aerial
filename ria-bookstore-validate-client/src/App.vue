@@ -10,8 +10,14 @@ const categoryStore = useCategoryStore()
 categoryStore.fetchCategories()
 </script>
 
+<style scoped>
+.app {
+  height: 100vh;
+}
+</style>
+
 <template>
-  <div id="app">
+  <div id="app" class="app">
     <the-header></the-header>
     <router-view :key="route.fullPath"></router-view>
     <the-footer></the-footer>

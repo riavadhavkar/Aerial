@@ -4,6 +4,7 @@ import HomeView from '@/views/HomeView.vue'
 import CategoryView from '@/views/CategoryView.vue'
 import CartView from '@/views/CartView.vue'
 import CheckoutView from '@/views/CheckoutView.vue'
+import ConfirmationView from '@/views/ConfirmationView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -27,7 +28,12 @@ const router = createRouter({
       path: '/checkout',
       name: 'checkout-view',
       component: CheckoutView
-    }
+    },
+    {
+      path: '/confirmation',
+      name: 'confirmation-view',
+      component: ConfirmationView
+    },
   ]
 })
 

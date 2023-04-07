@@ -2,16 +2,19 @@
 const PriceFormatter = new Intl.NumberFormat('en-US', {
   style: 'currency',
   currency: 'USD',
-  minimumFractionDigits: 0,
-  maximumFractionDigits: 2
+  minimumFractionDigits: 2
+})
+
+const BookPriceFormatter = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD',
+  minimumFractionDigits: 0
 })
 
 export const asDollarsAndCents = function (cents: number, bookFormat: boolean) {
   if (bookFormat) {
-    return PriceFormatter.format(Math.floor(cents/100))
+    return BookPriceFormatter.format(Math.floor(cents / 100.0))
+  } else {
+    return PriceFormatter.format(cents / 100.0)
   }
-  else{
-    return PriceFormatter.format(cents / 100)
-  }
-  
 }
