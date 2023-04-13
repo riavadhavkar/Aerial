@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import type { PopularItem } from '@/types'
 import { usePopularStore } from '@/stores/popular'
+import { useCategoryStore } from '@/stores/category'
+const categoryStore = useCategoryStore()
 
 const popularStore = usePopularStore()
 popularStore.fetchPopular()
@@ -77,7 +79,7 @@ li div {
     <i class="fa-solid fa-circle-chevron-left fa-2xl" @click="popularStore.backward()"></i>
 
     <li v-for="popularItem in popularStore.getCarouselItems" :key="popularItem.bookId">
-      <router-link :to="`../category/Popular`">
+      <router-link :to="`../category/` + categoryStore.getNameFromID(popularItem.categoryId)">
         <img
           class="popular-image"
           :src="popularImageUrl(popularImageFileName(popularItem))"

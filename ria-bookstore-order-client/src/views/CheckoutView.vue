@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { reactive } from 'vue'
+import { reactive, ref } from 'vue'
 import useVuelidate from '@vuelidate/core'
 import { helpers, maxLength, minLength, required, email } from '@vuelidate/validators'
 import { useCartStore } from '@/stores/cart'
@@ -8,10 +8,14 @@ import { isCreditCard, isMobilePhone } from '@/validators'
 import CheckoutFieldError from '@/components/CheckoutFieldError.vue'
 import router from '@/router'
 import { asDollarsAndCents } from '@/price'
+import type { OrderDetails, ServerErrorResponse } from '@/types'
 
 const categoryStore = useCategoryStore()
 const cartStore = useCartStore()
 const cart = cartStore.cart
+
+const defaultServerErrorMessage = 'An unexpected error occurred, please try again.'
+const serverErrorMessage = ref(defaultServerErrorMessage)
 
 const months: string[] = [
   'January',
@@ -68,7 +72,8 @@ const rules = {
       (value: string) => !helpers.req(value) || isCreditCard(value)
     )
   },
-  //   TODO: Add more validations for these and other fields that need more validation.
+  ccExpiryMonth: {},
+  ccExpiryYear: {}
 }
 const v$ = useVuelidate(rules, form)
 
@@ -78,20 +83,43 @@ async function submitOrder() {
   if (!isFormCorrect) {
     form.checkoutStatus = 'ERROR'
   } else {
-    form.checkoutStatus = 'PENDING'
-    setTimeout(() => {
-      form.checkoutStatus = 'OK'
-      setTimeout(() => {
-        router.push({ name: 'confirmation-view' })
-      }, 1000)
-    }, 1000)
+    try {
+      form.checkoutStatus = 'PENDING'
+      serverErrorMessage.value = defaultServerErrorMessage
+
+      const placeOrderResponse: OrderDetails | ServerErrorResponse = await cartStore.placeOrder({
+        name: form.name,
+        address: form.address,
+        phone: form.phone,
+        email: form.email,
+        ccNumber: form.ccNumber,
+        ccExpiryMonth: form.ccExpiryMonth,
+        ccExpiryYear: form.ccExpiryYear
+      })
+
+      if ('error' in placeOrderResponse) {
+        form.checkoutStatus = 'SERVER_ERROR'
+        serverErrorMessage.value = placeOrderResponse.message
+        console.log('Error placing order', placeOrderResponse)
+      } else {
+        form.checkoutStatus = 'OK'
+        await router.push({ name: 'confirmation-view' })
+      }
+    } catch (e) {
+      form.checkoutStatus = 'SERVER_ERROR'
+      serverErrorMessage.value = defaultServerErrorMessage
+      console.log('Error placing order', e)
+    }
   }
 }
 
 /* NOTE: For example yearFrom(0) == <current_year> */
 function yearFrom(index: number) {
+  // console.log("LOGGED " + v$.value.ccExpiryYear.$model)
   return new Date().getFullYear() + index
 }
+
+const year = ref(yearFrom(0))
 </script>
 
 <style scoped>
@@ -235,7 +263,7 @@ h2 {
   width: 100%;
 }
 
- select {
+select {
   background-color: var(--neutral-color);
   margin-left: 0.5em;
   margin-right: 0.5em;
@@ -253,13 +281,13 @@ form {
   gap: 0.5rem;
 }
 
-form > div {
+form>div {
   display: flex;
   justify-content: flex-end;
   margin-bottom: 0.5em;
 }
 
-form > div > input {
+form>div>input {
   background-color: var(--neutral-color);
   margin-left: 0.5em;
   margin-right: 0.5em;
@@ -298,7 +326,7 @@ label {
   margin: 1em;
   padding: 1em;
   text-align: center;
-  color: #EF233C;
+  color: #ef233c;
   grid-column: 1/3;
   font-weight: bold;
 }
@@ -310,58 +338,51 @@ label {
 
     <section v-if="!cart.empty" class="checkout-page-body">
       <form @submit.prevent="submitOrder">
+        <div class="checkout-input">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" v-model.lazy="v$.name.$model" />
+          <checkout-field-error :field-name="v$.name" />
+        </div>
 
-          <div class="checkout-input">
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" v-model.lazy="v$.name.$model" />
-            <checkout-field-error :field-name="v$.name" />
-          </div>
+        <div class="checkout-input">
+          <label for="address">Address</label>
+          <input type="text" id="address" name="address" v-model.lazy="v$.address.$model" />
+          <checkout-field-error :field-name="v$.address" />
+        </div>
 
-          <div class="checkout-input">
-            <label for="address">Address</label>
-            <input
-              type="text"
-              id="address"
-              name="address"
-              v-model.lazy="v$.address.$model"
-            />
-            <checkout-field-error :field-name="v$.address" />
-          </div>
-          
-          <div class="checkout-input">
-            <label for="phone">Phone</label>
-            <input type="text" id="phone" name="phone" v-model.lazy="v$.phone.$model" />
-            <checkout-field-error :field-name="v$.phone" />
-          </div>
+        <div class="checkout-input">
+          <label for="phone">Phone</label>
+          <input type="text" id="phone" name="phone" v-model.lazy="v$.phone.$model" />
+          <checkout-field-error :field-name="v$.phone" />
+        </div>
 
-          <div class="checkout-input">
-            <label for="ccNumber">Credit Card</label>
-            <input type="text" id="ccNumber" name="ccNumber" v-model.lazy="v$.ccNumber.$model"/>
-            <checkout-field-error :field-name="v$.ccNumber" />
-          </div>
-          
-          <div class="checkout-input">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" v-model.lazy="v$.email.$model"/>
-            <checkout-field-error :field-name="v$.email" />
-          </div>
+        <div class="checkout-input">
+          <label for="ccNumber">Credit Card</label>
+          <input type="text" id="ccNumber" name="ccNumber" v-model.lazy="v$.ccNumber.$model" />
+          <checkout-field-error :field-name="v$.ccNumber" />
+        </div>
 
-          <div class="checkout-input-expiry">
-            <label>Expiry Date</label>
-            <div class="expiry-inputs">
-              <select v-model="v$.ccExpiryMonth" >
-                <option v-for="(month, index) in months" :key="index" :value="index + 1">
-                  {{ month }} ({{ index + 1 }})
-                </option>
-              </select>
-              <select v-model="v$.ccExpiryYear">
-                <option v-for="(year, index) in 15" :key="index" :value="index + 1">
-                  {{ yearFrom(index) }}
-                </option>
-              </select>
-            </div>
+        <div class="checkout-input">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" v-model.lazy="v$.email.$model" />
+          <checkout-field-error :field-name="v$.email" />
+        </div>
+
+        <div class="checkout-input-expiry">
+          <label>Expiry Date</label>
+          <div class="expiry-inputs">
+            <select v-model.lazy="v$.ccExpiryMonth.$model">
+              <option v-for="(month, index) in months" :key="index" :value="index + 1">
+                {{ month }} ({{ index + 1 }})
+              </option>
+            </select>
+            <select v-model.lazy="v$.ccExpiryYear.$model">
+              <option v-for="index in 15" :key="yearFrom(index - 1)" :value="yearFrom(index - 1)">
+                {{ yearFrom(index - 1) }}
+              </option>
+            </select>
           </div>
-        <!-- </section> -->
+        </div>
 
         <section v-show="form.checkoutStatus !== ''" class="checkoutStatusBox">
           <div v-if="form.checkoutStatus === 'ERROR'">Error. Try Again.</div>
@@ -371,21 +392,16 @@ label {
         </section>
 
         <section Shipping: class="checkout-details">
-          <div class="checkout-details-small">Subtotal: <strong>{{ asDollarsAndCents(cart.subtotal, false) }}</strong
-          ></div>
-          <div class="checkout-details-small">Shipping: <strong>{{ asDollarsAndCents(cart.surcharge, false) }}</strong
-          ></div>
-          <div class="checkout-details-large">Total: <strong>{{ asDollarsAndCents(cart.subtotal + cart.surcharge, false) }}</strong
-          ></div>
+          <div class="checkout-details-small">Subtotal: <strong>{{ asDollarsAndCents(cart.subtotal, false) }}</strong>
+          </div>
+          <div class="checkout-details-small">Shipping: <strong>{{ asDollarsAndCents(cart.surcharge, false) }}</strong>
+          </div>
+          <div class="checkout-details-large">Total: <strong>{{ asDollarsAndCents(cart.subtotal + cart.surcharge, false)
+          }}</strong></div>
         </section>
 
-        <input
-          type="submit"
-          name="submit"
-          class="button complete-purchase"
-          :disabled="form.checkoutStatus === 'PENDING'"
-          value="Complete Purchase"
-        />
+        <input type="submit" name="submit" class="button complete-purchase" :disabled="form.checkoutStatus === 'PENDING'"
+          value="Complete Purchase" />
       </form>
     </section>
 

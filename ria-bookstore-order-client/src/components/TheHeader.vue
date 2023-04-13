@@ -75,6 +75,7 @@ header {
   border-radius: 10px;
   border: none;
   outline: none;
+  min-width: 6em;
 }
 .profile {
   border-radius: 10px;

@@ -16,5 +16,9 @@ export const useCategoryStore = defineStore('category', {
     getRecentCategory(recentCategory: string) {
         this.currentCategory = recentCategory
     },
-  }
+    getNameFromID(categoryId: number) {
+      const category = this.categoryList.find((category) => category.categoryId === categoryId)
+      return category?.name
+    }
+  },
 })
