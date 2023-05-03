@@ -2,7 +2,7 @@
 import CartTable from '@/components/CartTable.vue'
 import { useCategoryStore } from '@/stores/category'
 import { useCartStore } from '@/stores/cart'
-import { asDollarsAndCents } from '@/price'
+import { asDollarsAndCents } from '@/utils'
 const categoryStore = useCategoryStore()
 const cartStore = useCartStore()
 

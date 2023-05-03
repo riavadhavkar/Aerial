@@ -21,9 +21,9 @@ footer {
   gap: 0.25em;
 }
 
-.button.social-media{
-    background:none;
-    color: var(--primary-color);
+.button.social-media {
+  background: none;
+  color: var(--primary-color);
 }
 
 .button.social-media:hover,
@@ -37,7 +37,6 @@ footer {
   gap: 0.25em;
   /* display: inline-flexbox; */
 }
-
 </style>
 
 <template>

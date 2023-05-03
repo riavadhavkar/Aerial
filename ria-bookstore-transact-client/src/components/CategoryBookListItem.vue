@@ -1,25 +1,12 @@
 <script setup lang="ts">
 import type { BookItem } from '@/types'
-import { asDollarsAndCents } from '@/price'
+import { asDollarsAndCents, getBookImageUrl, bookImageFileName } from '@/utils'
 import { useCartStore } from '@/stores/cart'
 const cartStore = useCartStore()
 
 const props = defineProps<{
   book: BookItem
 }>()
-
-const bookImageFileName = function (book: BookItem): string {
-  let name = book.title.toLowerCase()
-  name = name.replace(/ /g, '-')
-  name = name.replace(/'/g, '')
-  name = name.replace(/,/g, '')
-  name = name.replace(/\?/g, '')
-  name = name.replace(/!/g, '')
-  return `${name}.jpg`
-}
-function bookImageUrl(imageFileName: string) {
-  return new URL(`../assets/book-images/${imageFileName}`, import.meta.url).href
-}
 </script>
 
 <style scoped>
@@ -145,7 +132,7 @@ function bookImageUrl(imageFileName: string) {
       </div>
       <img
         v-bind:class="{ 'read-overlay': book.isPublic }"
-        :src="bookImageUrl(bookImageFileName(props.book))"
+        :src="getBookImageUrl(bookImageFileName(props.book))"
         :alt="book.title"
       />
       <button v-if="book.isPublic" class="read-button">

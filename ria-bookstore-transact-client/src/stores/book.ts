@@ -9,16 +9,17 @@ export const useBookStore = defineStore('book', {
   }),
   actions: {
     async fetchBooks(categoryName: string) {
-      console.log(">> fetching book for category >> " + categoryName)
       const categoryStore = useCategoryStore()
 
       const selectedCategoryName =
         categoryStore.categoryList?.find((category) => category.name === categoryName)?.name ||
         categoryName
 
-      this.bookList = await fetch(`${apiUrl}/categories/name/${selectedCategoryName}/books`).then(
-        (response) => response.json()
-      )
+      const response = await fetch(`${apiUrl}/categories/name/${selectedCategoryName}/books`)
+      if (!response.ok) {
+        throw new Error('Failed to load the books.')
+      }
+      this.bookList = (await response.json()) as BookItem[]
     }
   }
 })

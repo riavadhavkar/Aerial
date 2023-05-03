@@ -5,6 +5,7 @@ import { useRoute } from 'vue-router'
 import { useBookStore } from '@/stores/book'
 import { watch } from 'vue'
 import { useCategoryStore } from '@/stores/category'
+import router from '@/router'
 const categoryStore = useCategoryStore()
 const route = useRoute()
 const bookStore = useBookStore()
@@ -12,7 +13,7 @@ const bookStore = useBookStore()
 watch(
   () => route.params.name,
   (newName) => {
-    bookStore.fetchBooks(newName as string)
+    bookStore.fetchBooks(newName as string).catch(() => router.push("/not-found"))
     categoryStore.getRecentCategory(newName as string)
   },
   { immediate: true }

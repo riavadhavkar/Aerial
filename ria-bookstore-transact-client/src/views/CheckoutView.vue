@@ -7,7 +7,7 @@ import { useCategoryStore } from '@/stores/category'
 import { isCreditCard, isMobilePhone } from '@/validators'
 import CheckoutFieldError from '@/components/CheckoutFieldError.vue'
 import router from '@/router'
-import { asDollarsAndCents } from '@/price'
+import { asDollarsAndCents } from '@/utils'
 import type { OrderDetails, ServerErrorResponse } from '@/types'
 
 const categoryStore = useCategoryStore()
@@ -72,8 +72,12 @@ const rules = {
       (value: string) => !helpers.req(value) || isCreditCard(value)
     )
   },
-  ccExpiryMonth: {},
-  ccExpiryYear: {}
+  ccExpiryMonth: {
+    required: helpers.withMessage('Month Required', required)
+  },
+  ccExpiryYear: {
+    required: helpers.withMessage('Year Required', required)
+  }
 }
 const v$ = useVuelidate(rules, form)
 
@@ -99,7 +103,7 @@ async function submitOrder() {
 
       if ('error' in placeOrderResponse) {
         form.checkoutStatus = 'SERVER_ERROR'
-        serverErrorMessage.value = placeOrderResponse.message
+        serverErrorMessage.value = (placeOrderResponse as ServerErrorResponse).message
         console.log('Error placing order', placeOrderResponse)
       } else {
         form.checkoutStatus = 'OK'
@@ -388,7 +392,7 @@ label {
           <div v-if="form.checkoutStatus === 'ERROR'">Error. Try Again.</div>
           <div v-else-if="form.checkoutStatus === 'PENDING'">Processing Order</div>
           <div v-else-if="form.checkoutStatus === 'OK'">Order Placed</div>
-          <div v-else>Unexpected Error</div>
+          <div v-else>{{ serverErrorMessage }}</div>
         </section>
 
         <section Shipping: class="checkout-details">

@@ -1,21 +1,9 @@
 <script setup lang="ts">
 import type { BookItem } from '@/types'
 import { useCartStore } from '@/stores/cart'
-import { asDollarsAndCents } from '@/price'
+import { asDollarsAndCents, getBookImageUrl, bookImageFileName } from '@/utils'
 const cartStore = useCartStore()
 
-const bookImageFileName = function (book: BookItem): string {
-  let name = book.title.toLowerCase()
-  name = name.replace(/ /g, '-')
-  name = name.replace(/'/g, '')
-  name = name.replace(/,/g, '')
-  name = name.replace(/\?/g, '')
-  name = name.replace(/!/g, '')
-  return `${name}.jpg`
-}
-function bookImageUrl(imageFileName: string) {
-  return new URL(`../assets/book-images/${imageFileName}`, import.meta.url).href
-}
 const updateCart = function (book: BookItem, quantity: number) {
   cartStore.updateBookQuantity(book, quantity)
 }
@@ -162,7 +150,7 @@ img {
   <div class="cart-table">
     <ul>
       <li class="table-heading">
-        <div class="heading-book">Book</div>
+        <div class="heading-book">Comic</div>
         <div class="heading-price">Price</div>
         <div class="heading-quantity">Quantity</div>
         <div class="heading-subtotal">Amount</div>
@@ -172,7 +160,7 @@ img {
       <template v-for="item in cartStore.cart.items" :key="item.book.bookId">
         <li>
           <div class="cart-book-image">
-            <img :src="bookImageUrl(bookImageFileName(item.book))" :alt="item.book.title" />
+            <img :src="getBookImageUrl(bookImageFileName(item.book))" :alt="item.book.title" />
           </div>
           <div class="cart-book-title">{{ item.book.title }}</div>
           <div class="cart-book-price">{{ asDollarsAndCents(item.book.price, false) }}</div>
