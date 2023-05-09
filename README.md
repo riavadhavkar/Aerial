@@ -1,6 +1,6 @@
 # Aerial
 
-Aerial is online comicbook store, where users can simulate purchasing books, and reading books that are publicly available in electronic format. CS 5244 taught me essentials of Figma, UI/UX Design, HTML, CSS, JavaScript + TypeScript, MySQL, and Vue.
+Aerial is an online comic-book store where users can simulate purchasing and reading books publicly available in electronic format. CS 5244 taught me the essentials of Figma, UI/UX Design, HTML, CSS, JavaScript + TypeScript, MySQL, and Vue.
 
 ## User Experience
 ![](https://i.imgur.com/F9U2hcr.png)
